@@ -2,7 +2,7 @@
 This application includes highlighted components, which has a PaymentGateway APIs exposed to Merchants.
 Also, this includes a simulator for receiving requests and responding if the payment is approved or declined.
 
-![image](https://user-images.githubusercontent.com/4521723/175813978-62f56fc6-7518-41ed-adfd-91571a8d5a76.png)
+![image](https://user-images.githubusercontent.com/4521723/175814204-d22c7e59-6162-4cce-b1a7-66c44db54c46.png)
 
 # Architecture
 
@@ -18,6 +18,9 @@ The CKO Bank Simulator does not validate card details as per any rules( issuer s
 # How to Run
 Steps:
 -	Clone the repo from link: https://github.com/varsha-karandikar/CKO.PaymentProcessing.git
+-	Press Ctrl + F5 to build and run the Web Apis
+-	It will open Swagger page : http://localhost:5204/swagger which lists down all APIs
+-	The APIs are listed below:
 
 # Areas of Improvement
 The component CKO.BankSimulator has been built using Inmemory collection, and it saves card details for the time when its run, assuming that payment gateway does not 
