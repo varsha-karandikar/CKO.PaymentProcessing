@@ -1,5 +1,6 @@
 ﻿using CKO.BankSimulator.Repository;
 using CKO.PaymentGateway.API.Services;
+using CKO.PaymentGateway.Contracts;
 using CKO.PaymentGateway.Contracts.DTO;
 using CKO.PaymentGateway.Contracts.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -26,6 +27,14 @@ namespace CKO.PaymentGateway.API.Controllers
 
             try
             {
+                PaymentRequestValidator validator = new PaymentRequestValidator();
+                var validationResult = validator.Validate(paymentRequest);
+                if (!validationResult.IsValid)
+                {
+                    response = BadRequest(validationResult.Errors);
+                    return response;
+                }
+
                 var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
                 if (result != null)
                     response = Created(new Uri("/Payment", UriKind.Relative), result); 
@@ -42,8 +51,15 @@ namespace CKO.PaymentGateway.API.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get(int paymentId)
         {
+            
             try
             {
+                if(paymentId <= 0)
+                {
+                    return BadRequest(new { PaymentId = paymentId, Error = "This paymentId is not valid" });
+
+                }
+
                 var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
                 if (result == null)
                     return NotFound(new { PaymentId = paymentId, Error = "This paymentId does not exist" });
