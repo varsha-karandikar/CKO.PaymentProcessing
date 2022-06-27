@@ -14,12 +14,7 @@ namespace CKO.PaymentGateway.Contracts.DTO
         public PaymentDetails PaymentDetails { get; set; }
         public Card Card { get; set; }
 
-        public string MerchantId { get; set; }
-
-        public string IndustryCode { get; set; }
-
-        //public bool CheckForDuplicateTransactions { get; set; }
-       
+        public string MerchantId { get; set; }       
 
         public string CurrencyCode { get; set; }
     }

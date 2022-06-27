@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.BankSimulator.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.MerchantAuthentication", "CKO.PaymentGateway.MerchantAuthentication\CKO.PaymentGateway.MerchantAuthentication.csproj", "{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.MerchantAuthentication.UnitTests", "tests\CKO.PaymentGateway.MerchantAuthentication.UnitTests\CKO.PaymentGateway.MerchantAuthentication.UnitTests.csproj", "{18F652D7-CD13-4486-8D1A-D164816C5961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{65DC7FF0-63EF-4607-8A92-FEBD62FB1ADE} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 		{3DE16B93-B2C8-4E7B-969D-7F8038010914} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 		{2DF0D180-D6C9-47E4-8785-21618408F885} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
+		{18F652D7-CD13-4486-8D1A-D164816C5961} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88BBCA5-015B-4AE1-8E55-878D7B243CF3}
