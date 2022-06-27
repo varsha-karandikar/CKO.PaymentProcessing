@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CKO.PaymentGateway.Contracts.Models
+namespace CKO.BankSimulator.Models
 {
-    public class Transaction
+    public class PaymentDetails
     {
-        public string TransactionId { get; set; }
-        public string TransactionType { get; set; }
 
+        public int Id { get; set; }
         public string ApprovalNumber { get; set; }
 
         public string ProcessorName { get; set; }
 
-        public PaymentStatus TransactionStatus { get; set; }
+        public string PaymentStatus { get; set; }
 
         public decimal ApprovedAmount { get; set; }
     }

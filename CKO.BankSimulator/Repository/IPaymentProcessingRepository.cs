@@ -1,4 +1,6 @@
 ﻿using CKO.BankSimulator.Models;
+using CKO.PaymentGateway.Contracts.DTO;
+using CKO.PaymentGateway.Contracts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,8 @@ namespace CKO.BankSimulator.Repository
 {
     public interface IPaymentProcessingRepository
     {
-        public Task CreatePaymentAsync();
+        public Task<Payment> CreatePaymentAsync(IPaymentRequest paymentRequest);
 
-        public Task<Payment> GetPaymentAsync();
+        public Task<Payment> GetPaymentAsync(int paymentId);
     }
 }

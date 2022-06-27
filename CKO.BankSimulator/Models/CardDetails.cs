@@ -11,7 +11,7 @@ namespace CKO.BankSimulator.Models
     {
         public int Id { get; set; }
         public CardLogo CardLogo { get; set; }
-        public string MaskedCardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         public int ExpirationMonth { get; set; }
 

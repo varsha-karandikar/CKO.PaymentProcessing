@@ -2,6 +2,7 @@ using CKO.BankSimulator.Repository;
 using Microsoft.EntityFrameworkCore;
 using CKO.BankSimulator.DataContext;
 using Microsoft.AspNetCore.Builder;
+using CKO.PaymentGateway.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSwaggerGen(options =>
@@ -19,6 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 builder.Services.AddScoped<IPaymentProcessingRepository, PaymentProcessingRepository>();
+builder.Services.AddScoped<IPaymentProcessingService, SimulatorPaymentProcessingService>();
+
 
 var app = builder.Build();
 

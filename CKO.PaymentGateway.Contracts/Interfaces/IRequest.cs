@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CKO.BankSimulator.Services
+namespace CKO.PaymentGateway.Contracts.Interfaces
 {
-    internal class PaymentProcessingService
+    public interface IRequest
     {
+        public Guid RequestId { get; set; }
     }
 }

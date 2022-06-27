@@ -9,7 +9,6 @@ namespace CKO.PaymentGateway.Contracts.Models
     public enum PaymentStatus
     {
         Approved,
-        Declined,
-        Invalid
+        Declined
     }
 }

@@ -1,4 +1,6 @@
 ﻿using CKO.BankSimulator.Repository;
+using CKO.PaymentGateway.API.Services;
+using CKO.PaymentGateway.Contracts.DTO;
 using CKO.PaymentGateway.Contracts.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,23 +10,27 @@ namespace CKO.PaymentGateway.API.Controllers
     [Route("[controller]")]
     public class PaymentController : ControllerBase
     { 
-        private IPaymentProcessingRepository _paymentProcessingRepository;
-        public PaymentController(IPaymentProcessingRepository paymentProcessingRepository)
+        /// <summary>
+        /// private IPaymentProcessingRepository _paymentProcessingRepository;
+        /// </summary>
+
+        private readonly IPaymentProcessingService _paymentProcessingService;
+        public PaymentController(IPaymentProcessingService paymentProcessingService)
         {
-            _paymentProcessingRepository = paymentProcessingRepository;
+            _paymentProcessingService = paymentProcessingService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(PaymentRequest paymentRequest)
         {
-            await _paymentProcessingRepository.CreatePaymentAsync();
-            return Ok(new PaymentResponse());
+            var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
+            return Ok(result);
         }
 
         [HttpGet()]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int paymentId)
         {
-           var result = await _paymentProcessingRepository.GetPaymentAsync();
+           var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
             return Ok(result);
 
         }

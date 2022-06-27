@@ -12,12 +12,17 @@ namespace CKO.BankSimulator.Models
         public string MerchantId { get; set; }
 
         public int Id { get; set; }
-        public string ProcessorName { get; set; }
+        //public string ProcessorName { get; set; }
 
+        public PaymentDetails PaymentDetails { get; set; }
         public PaymentStatus TransactionStatus { get; set; }
 
         public CardDetails Card { get; set; }
 
-        public decimal ApprovedAmount { get; set; }
+        //public decimal Amount { get; set; }
+
+        public DateTime TransactionDateTime { get; set; }
+
+        public string CurrencyCode { get; set; }
     }
 }
