@@ -30,8 +30,71 @@ It uses following tech:
 Steps:
 -	Clone the repo from link: https://github.com/varsha-karandikar/CKO.PaymentProcessing.git
 -	Press Ctrl + F5 to build and run the Web Apis
--	It will open Swagger page : http://localhost:5204/swagger which lists down all APIs
--	The APIs are listed below:
+-	It will open Swagger page : http://localhost:5204/swagger/index.html which lists down all APIs as below:
+![image](https://user-images.githubusercontent.com/4521723/175974182-7285b11f-2ce7-4aae-afc2-086d5dffa270.png)
+
+- First, we need to generate Auth Token to allow access to Payment APIs:
+- Click on /login API and click on Try It Out
+- The sample request body as below:
+{
+  "merchantId": "1004",
+  "secret": "mySecret1004"
+}
+
+- This will provide a token in Response. Copy the token
+- Click on Authorize at the top right corner.
+- Add copied token in the textbox.
+- To create payment:
+- Hit /Payment API and provide request body as below:
+{
+  "merchantId": "1004",
+  "cardNumber": "5521370103998437",  //card numbers needs to be valid
+  "expirationMonth": 12,
+  "expirationYear": 2025, //expiration year should be valid
+  "cvv": "123",
+  "currencyCode": "USD",
+  "amount": 10,
+  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+and click on Execute:
+
+If request is successful, it returns below response:
+{
+  "id": 1,
+  "transactionTime": "2022-06-27T15:00:01.7011908Z",
+  "paymentDetails": {
+    "processorName": "CKO.BankSimulator.MockProcessor",
+    "paymentStatus": "Approved",
+    "amount": 10
+  },
+  "card": {
+    "cardLogo": 1,
+    "maskedCardNumber": "552137******8437"
+  },
+  "merchantId": "1004",
+  "industryCode": null,
+  "currencyCode": "USD"
+}
+
+- To retrieve previous payment details, hit API /Payment/{paymentId}, provide the paymentId of previous payment and hit on Execute.
+- If paymentId exsists, this returns response as :
+{
+  "id": 1,
+  "transactionTime": "2022-06-27T15:00:01.7011908Z",
+  "paymentDetails": {
+    "processorName": "CKO.BankSimulator.MockProcessor",
+    "paymentStatus": "Approved",
+    "amount": 10
+  },
+  "card": {
+    "cardLogo": 1,
+    "maskedCardNumber": "552137******8437"
+  },
+  "merchantId": "1004",
+  "industryCode": null,
+  "currencyCode": "USD"
+}
+- If the paymentId, does not exist, this results in 404 result.
 
 # Areas of Improvement
 The component CKO.BankSimulator has been built using Inmemory collection, and it saves card details for the time when its run.
