@@ -7,15 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.PaymentGateway.API", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.PaymentGateway.Contracts", "CKO.PaymentGateway.Contracts\CKO.PaymentGateway.Contracts.csproj", "{482A4278-2D2C-486A-9E6B-D9BA701765BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.BankSimulator", "CKO.BankSimulator\CKO.BankSimulator.csproj", "{8ACEB257-82F2-4E54-AE55-808B58179C1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.BankSimulator", "CKO.BankSimulator\CKO.BankSimulator.csproj", "{8ACEB257-82F2-4E54-AE55-808B58179C1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.Contracts.Tests", "tests\CKO.PaymentGateway.Contracts.Tests\CKO.PaymentGateway.Contracts.Tests.csproj", "{65DC7FF0-63EF-4607-8A92-FEBD62FB1ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.PaymentGateway.Contracts.Tests", "tests\CKO.PaymentGateway.Contracts.Tests\CKO.PaymentGateway.Contracts.Tests.csproj", "{65DC7FF0-63EF-4607-8A92-FEBD62FB1ADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.API.Tests", "tests\CKO.PaymentGateway.API.Tests\CKO.PaymentGateway.API.Tests.csproj", "{3DE16B93-B2C8-4E7B-969D-7F8038010914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.PaymentGateway.API.Tests", "tests\CKO.PaymentGateway.API.Tests\CKO.PaymentGateway.API.Tests.csproj", "{3DE16B93-B2C8-4E7B-969D-7F8038010914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.BankSimulator.Tests", "tests\CKO.BankSimulator.Tests\CKO.BankSimulator.Tests.csproj", "{2DF0D180-D6C9-47E4-8785-21618408F885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CKO.BankSimulator.Tests", "tests\CKO.BankSimulator.Tests\CKO.BankSimulator.Tests.csproj", "{2DF0D180-D6C9-47E4-8785-21618408F885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.MerchantAuthentication", "CKO.PaymentGateway.MerchantAuthentication\CKO.PaymentGateway.MerchantAuthentication.csproj", "{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.PaymentGateway.MerchantAuthentication.UnitTests", "tests\CKO.PaymentGateway.MerchantAuthentication.UnitTests\CKO.PaymentGateway.MerchantAuthentication.UnitTests.csproj", "{18F652D7-CD13-4486-8D1A-D164816C5961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{2DF0D180-D6C9-47E4-8785-21618408F885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DF0D180-D6C9-47E4-8785-21618408F885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DF0D180-D6C9-47E4-8785-21618408F885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC15E2F9-DEEB-4D0A-95B3-D0F41AD78118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F652D7-CD13-4486-8D1A-D164816C5961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +67,7 @@ Global
 		{65DC7FF0-63EF-4607-8A92-FEBD62FB1ADE} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 		{3DE16B93-B2C8-4E7B-969D-7F8038010914} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 		{2DF0D180-D6C9-47E4-8785-21618408F885} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
+		{18F652D7-CD13-4486-8D1A-D164816C5961} = {BFF1D9B1-D07C-4C1F-AFC0-1DE6D928E543}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88BBCA5-015B-4AE1-8E55-878D7B243CF3}

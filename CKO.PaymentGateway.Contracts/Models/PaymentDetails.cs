@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace CKO.PaymentGateway.Contracts.Models
 {
-    public enum PaymentStatus
+    public class PaymentDetails
     {
-        Approved,
-        Declined
+        public string ProcessorName { get; set; }
+
+        public string PaymentStatus { get; set; }
+
+        public decimal? Amount { get; set; }
     }
 }

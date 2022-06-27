@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace CKO.PaymentGateway.Contracts.Models
 {
-    public enum PaymentStatus
+    public class Merchant
     {
-        Approved,
-        Declined
+        public int Id { get; set; }
+
+        public string StoreName { get; set; }
+
+        public string Industry { get; set; }
+
+
     }
 }

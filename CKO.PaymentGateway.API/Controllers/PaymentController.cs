@@ -1,5 +1,10 @@
 ﻿using CKO.BankSimulator.Repository;
+using CKO.PaymentGateway.API.Services;
+using CKO.PaymentGateway.Contracts;
+using CKO.PaymentGateway.Contracts.DTO;
 using CKO.PaymentGateway.Contracts.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CKO.PaymentGateway.API.Controllers
@@ -8,24 +13,63 @@ namespace CKO.PaymentGateway.API.Controllers
     [Route("[controller]")]
     public class PaymentController : ControllerBase
     { 
-        private IPaymentProcessingRepository _paymentProcessingRepository;
-        public PaymentController(IPaymentProcessingRepository paymentProcessingRepository)
+        private readonly IPaymentProcessingService _paymentProcessingService;
+        public PaymentController(IPaymentProcessingService paymentProcessingService)
         {
-            _paymentProcessingRepository = paymentProcessingRepository;
+            _paymentProcessingService = paymentProcessingService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create()
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Create(PaymentRequest paymentRequest)
         {
-            await _paymentProcessingRepository.CreatePaymentAsync();
-            return Ok(new PaymentResponse());
+            IActionResult response = null;
+
+            try
+            {
+                PaymentRequestValidator validator = new PaymentRequestValidator();
+                var validationResult = validator.Validate(paymentRequest);
+                if (!validationResult.IsValid)
+                {
+                    response = BadRequest(validationResult.Errors);
+                    return response;
+                }
+
+                var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
+                if (result != null)
+                    response = Created(new Uri("/Payment", UriKind.Relative), result); 
+
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            return response;
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> Get()
+        [HttpGet("{paymentId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Get(int paymentId)
         {
-           var result = await _paymentProcessingRepository.GetPaymentAsync();
-            return Ok(result);
+            
+            try
+            {
+                if(paymentId <= 0)
+                {
+                    return BadRequest(new { PaymentId = paymentId, Error = "This paymentId is not valid" });
+
+                }
+
+                var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
+                if (result == null)
+                    return NotFound(new { PaymentId = paymentId, Error = "This paymentId does not exist" });
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
 
         }
 

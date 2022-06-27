@@ -11,8 +11,5 @@ namespace CKO.PaymentGateway.Contracts.Models
         public CardLogo CardLogo { get; set; }
         public string MaskedCardNumber { get; set; }
 
-        public string BIN { get; set; }
-
-        public string CVVResponseCode { get; set; }
     }
 }
