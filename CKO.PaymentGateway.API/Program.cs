@@ -1,7 +1,6 @@
 using CKO.BankSimulator.Repository;
 using Microsoft.EntityFrameworkCore;
 using CKO.BankSimulator.DataContext;
-using Microsoft.AspNetCore.Builder;
 using CKO.PaymentGateway.API.Services;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using CKO.PaymentGateway.Contracts.MerchantAuthentication;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using CKO.PaymentGateway.MerchantAuthentication;
 
 var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSwaggerGen(options =>
@@ -62,7 +62,6 @@ builder.Services.AddEndpointsApiExplorer();
 
 
 
-//builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 builder.Services.AddScoped<IMerchantAuthenticationService, MerchantAuthenticationService>();
 
 builder.Services.AddScoped<IPaymentProcessingRepository, PaymentProcessingRepository>();

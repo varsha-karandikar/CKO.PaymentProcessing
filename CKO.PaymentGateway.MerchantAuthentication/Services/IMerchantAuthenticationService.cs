@@ -1,6 +1,6 @@
 ﻿using CKO.PaymentGateway.Contracts.MerchantAuthentication;
 
-namespace CKO.PaymentGateway.API.Services
+namespace CKO.PaymentGateway.MerchantAuthentication
 {
     public interface IMerchantAuthenticationService
     {

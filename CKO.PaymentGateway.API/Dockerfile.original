@@ -8,7 +8,6 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["CKO.PaymentGateway.API/CKO.PaymentGateway.API.csproj", "CKO.PaymentGateway.API/"]
 COPY ["CKO.PaymentGateway.Contracts/CKO.PaymentGateway.Contracts.csproj", "CKO.PaymentGateway.Contracts/"]
-COPY ["CKO.PaymentGateway.MerchantAuthentication/CKO.PaymentGateway.MerchantAuthentication.csproj", "CKO.PaymentGateway.MerchantAuthentication/"]
 COPY ["CKO.BankSimulator/CKO.BankSimulator.csproj", "CKO.BankSimulator/"]
 RUN dotnet restore "CKO.PaymentGateway.API/CKO.PaymentGateway.API.csproj"
 COPY . .

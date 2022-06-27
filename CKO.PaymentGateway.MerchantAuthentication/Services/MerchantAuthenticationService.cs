@@ -1,7 +1,7 @@
-﻿using CKO.PaymentGateway.API.Repositories;
-using CKO.PaymentGateway.Contracts.MerchantAuthentication;
+﻿using CKO.PaymentGateway.Contracts.MerchantAuthentication;
+using CKO.PaymentGateway.MerchantAuthentication.Repositories;
 
-namespace CKO.PaymentGateway.API.Services
+namespace CKO.PaymentGateway.MerchantAuthentication
 {
     public class MerchantAuthenticationService : IMerchantAuthenticationService
     {

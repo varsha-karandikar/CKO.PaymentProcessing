@@ -22,49 +22,35 @@ namespace CKO.PaymentGateway.API.Services
         {
             var newPayment = await _paymentProcessingRepository.CreatePaymentAsync(paymentRequest);
 
-            return new PaymentResponse()
-            {
-                TransactionTime = newPayment.TransactionDateTime,
-                Id = newPayment.Id,
-                Card = new Contracts.Models.Card()
-                {
-                    CardLogo = newPayment.Card.CardLogo,
-                    MaskedCardNumber = newPayment.Card.CardNumber
-                    
-                },
-                PaymentDetails = new Contracts.Models.PaymentDetails()
-                {
-                    Amount = newPayment.PaymentDetails.Amount,
-                    PaymentStatus = Enum.GetName(newPayment.PaymentDetails.PaymentStatus),
-                    ProcessorName = newPayment.PaymentDetails.ProcessorName
-                },
-                CurrencyCode = newPayment.CurrencyCode,
-                MerchantId = newPayment.MerchantId
-
-            };
+            return GenerateResponseFromService(newPayment);
         }
 
         public async Task<PaymentResponse> GetPaymentResponseAsync(int paymentId)
         {
             var paymentResponse = await _paymentProcessingRepository.GetPaymentAsync(paymentId);
+            return GenerateResponseFromService(paymentResponse);
+        }
+
+        private PaymentResponse GenerateResponseFromService(Payment payment)
+        {
             return new PaymentResponse()
             {
-                TransactionTime = paymentResponse.TransactionDateTime,
-                Id = paymentResponse.Id,
+                TransactionTime = payment.TransactionDateTime,
+                Id = payment.Id,
                 Card = new Contracts.Models.Card()
                 {
-                    CardLogo = paymentResponse.Card.CardLogo,
-                    MaskedCardNumber = paymentResponse.Card.CardNumber
+                    CardLogo = payment.Card.CardLogo,
+                    MaskedCardNumber = payment.Card.CardNumber
 
                 },
                 PaymentDetails = new Contracts.Models.PaymentDetails()
                 {
-                    Amount = paymentResponse.PaymentDetails.Amount,
-                    PaymentStatus = Enum.GetName(paymentResponse.PaymentDetails.PaymentStatus),
-                    ProcessorName = paymentResponse.PaymentDetails.ProcessorName
+                    Amount = payment.PaymentDetails.Amount,
+                    PaymentStatus = Enum.GetName(payment.PaymentDetails.PaymentStatus),
+                    ProcessorName = payment.PaymentDetails.ProcessorName
                 },
-                CurrencyCode = paymentResponse.CurrencyCode,
-                MerchantId = paymentResponse.MerchantId
+                CurrencyCode = payment.CurrencyCode,
+                MerchantId = payment.MerchantId
 
             };
         }

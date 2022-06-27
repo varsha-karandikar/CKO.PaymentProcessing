@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CKO.BankSimulator\CKO.BankSimulator.csproj" />
     <ProjectReference Include="..\CKO.PaymentGateway.Contracts\CKO.PaymentGateway.Contracts.csproj" />
+    <ProjectReference Include="..\CKO.PaymentGateway.MerchantAuthentication\CKO.PaymentGateway.MerchantAuthentication.csproj" />
   </ItemGroup>
 
 </Project>

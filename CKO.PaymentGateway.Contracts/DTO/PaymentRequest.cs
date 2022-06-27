@@ -7,10 +7,6 @@ namespace CKO.PaymentGateway.Contracts.DTO
     {
         public string MerchantId { get; set; }
 
-        public string MarketCode { get; set; }
-
-        //public bool CheckForDuplicateTransactions { get; set; }
-
         [Required]
         public string CardNumber { get; set; }
 

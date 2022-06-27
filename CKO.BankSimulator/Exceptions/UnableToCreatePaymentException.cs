@@ -12,5 +12,17 @@ namespace CKO.BankSimulator.Exceptions
         {
 
         }
+
+        public UnableToCreatePaymentException(string message, Exception innerException) : base(message, innerException)
+        {
+
+        }
+
+        public UnableToCreatePaymentException(string message) : base(message)
+        {
+
+
+
+        }
     }
 }

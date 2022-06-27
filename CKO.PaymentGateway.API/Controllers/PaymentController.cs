@@ -20,18 +20,40 @@ namespace CKO.PaymentGateway.API.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult> Create(PaymentRequest paymentRequest)
+        public async Task<IActionResult> Create(PaymentRequest paymentRequest)
         {
-            var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
-            return Ok(result);
+            IActionResult response = null;
+
+            try
+            {
+                var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
+                if (result != null)
+                    response = Created(new Uri("/Payment", UriKind.Relative), result); 
+
+            }
+            catch (Exception ex)
+            {
+                response = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            return response;
         }
 
-        [HttpGet()]
+        [HttpGet("{paymentId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get(int paymentId)
         {
-           var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
-            return Ok(result);
+            try
+            {
+                var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
+                if (result == null)
+                    return NotFound(new { PaymentId = paymentId, Error = "This paymentId does not exist" });
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
 
         }
 

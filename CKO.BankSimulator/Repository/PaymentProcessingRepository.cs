@@ -9,18 +9,20 @@ using System.Threading.Tasks;
 using CKO.BankSimulator.Extensions;
 using CKO.PaymentGateway.Contracts.Models;
 using PaymentDetails = CKO.BankSimulator.Models.PaymentDetails;
+using CKO.BankSimulator.Exceptions;
 
 namespace CKO.BankSimulator.Repository
 {
     public class PaymentProcessingRepository : IPaymentProcessingRepository
     {
-        private PaymentDBContext _dbContext;
+        private readonly PaymentDBContext _dbContext;
         private const string ProcessorName = "CKO.BankSimulator.MockProcessor";
             
         public PaymentProcessingRepository(PaymentDBContext dataContext) 
         {
             _dbContext = dataContext;
         }
+
         public async Task<Payment> CreatePaymentAsync(PaymentGateway.Contracts.Interfaces.IPaymentRequest paymentRequest)
         {
             try
@@ -51,6 +53,7 @@ namespace CKO.BankSimulator.Repository
 
                 };
 
+
                 await context.AddAsync(newPayment);
                 
                 await context.SaveChangesAsync();
@@ -58,15 +61,25 @@ namespace CKO.BankSimulator.Repository
             }
             catch(Exception ex)
             {
-                throw new Exception();
+                throw new UnableToCreatePaymentException("Payment could not be processed", ex);
             }
         }
 
         public async Task<Payment> GetPaymentAsync(int paymentId)
         {
+            if (paymentId <= 0)
+                throw new InvalidDataException("Payment Id is not valid");
 
-            var result = await _dbContext.Payments.Where(x => x.Id == paymentId).Include(x=> x.Card).Include(x=> x.PaymentDetails).FirstOrDefaultAsync();
-            return result;
+            try
+            {
+
+                var result = await _dbContext.Payments.Where(x => x.Id == paymentId).Include(x => x.Card).Include(x => x.PaymentDetails).FirstOrDefaultAsync();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new UnableToCreatePaymentException("Payment could not be retrieved", ex);
+            }
 
         }
 
