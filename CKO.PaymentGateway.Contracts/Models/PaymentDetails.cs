@@ -8,12 +8,10 @@ namespace CKO.PaymentGateway.Contracts.Models
 {
     public class PaymentDetails
     {
-        public string ApprovalNumber { get; set; }
-
         public string ProcessorName { get; set; }
 
         public string PaymentStatus { get; set; }
 
-        public decimal ApprovedAmount { get; set; }
+        public decimal? Amount { get; set; }
     }
 }

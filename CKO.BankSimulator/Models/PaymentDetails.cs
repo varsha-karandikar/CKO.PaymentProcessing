@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CKO.PaymentGateway.Contracts.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,10 @@ namespace CKO.BankSimulator.Models
     {
 
         public int Id { get; set; }
-        public string ApprovalNumber { get; set; }
-
         public string ProcessorName { get; set; }
 
-        public string PaymentStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
 
-        public decimal ApprovedAmount { get; set; }
+        public decimal? Amount { get; set; }
     }
 }

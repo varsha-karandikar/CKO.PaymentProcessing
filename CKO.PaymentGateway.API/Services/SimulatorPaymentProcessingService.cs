@@ -20,13 +20,6 @@ namespace CKO.PaymentGateway.API.Services
 
         public async Task<PaymentResponse> CreatePaymentAsync<T>(T paymentRequest) where T : IPaymentRequest
         {
-            //var newPaymentRequest = new Payment()
-            //{
-            //    Amount = paymentRequest.Amount,
-            //    MerchantId = paymentRequest.MerchantId
-               
-            //};
-
             var newPayment = await _paymentProcessingRepository.CreatePaymentAsync(paymentRequest);
 
             return new PaymentResponse()
@@ -41,9 +34,8 @@ namespace CKO.PaymentGateway.API.Services
                 },
                 PaymentDetails = new Contracts.Models.PaymentDetails()
                 {
-                    ApprovedAmount = newPayment.PaymentDetails.ApprovedAmount,
-                    PaymentStatus = newPayment.PaymentDetails.PaymentStatus,
-                    ApprovalNumber = newPayment.PaymentDetails.ApprovalNumber,
+                    Amount = newPayment.PaymentDetails.Amount,
+                    PaymentStatus = Enum.GetName(newPayment.PaymentDetails.PaymentStatus),
                     ProcessorName = newPayment.PaymentDetails.ProcessorName
                 },
                 CurrencyCode = newPayment.CurrencyCode,
@@ -67,9 +59,8 @@ namespace CKO.PaymentGateway.API.Services
                 },
                 PaymentDetails = new Contracts.Models.PaymentDetails()
                 {
-                    ApprovedAmount = paymentResponse.PaymentDetails.ApprovedAmount,
-                    PaymentStatus = paymentResponse.PaymentDetails.PaymentStatus,
-                    ApprovalNumber = paymentResponse.PaymentDetails.ApprovalNumber,
+                    Amount = paymentResponse.PaymentDetails.Amount,
+                    PaymentStatus = Enum.GetName(paymentResponse.PaymentDetails.PaymentStatus),
                     ProcessorName = paymentResponse.PaymentDetails.ProcessorName
                 },
                 CurrencyCode = paymentResponse.CurrencyCode,
