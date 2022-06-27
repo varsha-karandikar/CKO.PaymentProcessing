@@ -2,6 +2,8 @@
 using CKO.PaymentGateway.API.Services;
 using CKO.PaymentGateway.Contracts.DTO;
 using CKO.PaymentGateway.Contracts.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CKO.PaymentGateway.API.Controllers
@@ -10,10 +12,6 @@ namespace CKO.PaymentGateway.API.Controllers
     [Route("[controller]")]
     public class PaymentController : ControllerBase
     { 
-        /// <summary>
-        /// private IPaymentProcessingRepository _paymentProcessingRepository;
-        /// </summary>
-
         private readonly IPaymentProcessingService _paymentProcessingService;
         public PaymentController(IPaymentProcessingService paymentProcessingService)
         {
@@ -21,6 +19,7 @@ namespace CKO.PaymentGateway.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Create(PaymentRequest paymentRequest)
         {
             var result = await _paymentProcessingService.CreatePaymentAsync(paymentRequest);
@@ -28,6 +27,7 @@ namespace CKO.PaymentGateway.API.Controllers
         }
 
         [HttpGet()]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get(int paymentId)
         {
            var result = await _paymentProcessingService.GetPaymentResponseAsync(paymentId);
