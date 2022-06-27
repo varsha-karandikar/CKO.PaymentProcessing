@@ -39,6 +39,6 @@ These APIs will require richer fields to have more data from Customer, and will 
 Further. the Bank Simulator will be a  separate service which will be called via HTTP/HTTPS
 
 # Using cloud Technologies 
-The Paymentgateway APIs can be deployed using Azure App Service or AWS Elastic Beanstalk.
-The Payment Gateway will communicate with Acquiring Bank using HttpCommunication. We can have a wrapper build around IPaymentProcessingService to call Acquiring Bank APIs.
-
+1. The Paymentgateway APIs can be deployed using Azure App Service or AWS Elastic Beanstalk.
+2. The Payment Gateway will communicate with Acquiring Bank using HttpCommunication. We can have a wrapper build around IPaymentProcessingService to call Acquiring Bank APIs.
+3. Here Security is managed by using local JWT tokens. however, for this separate IdentityService can be used to authenticate.This service can be used with API Gateway (BFF) for Authentication.
